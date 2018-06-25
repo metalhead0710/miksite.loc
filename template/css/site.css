@@ -535,21 +535,39 @@ main p {
     width: 250px;
     padding: 15px;
     background: #D2D5D9;
+    transition:all 0.5s;
+}
+.feedback.open {
+    right: 0;
+    transition:all 0.5s;
 }
 .feedback .handle {
     position: absolute;
-    top: 25px;
+    top: 0;
     cursor: pointer;
     border-top-left-radius: 50%;
     border-bottom-left-radius: 50%;
-    left: -55px;
+    left: -123px;
     display: inline-block;
     background: #D2D5D9;
+    line-height: 100px;
+}
+.feedback .handle:hover,
+.feedback .handle:active,
+.feedback .handle:focus {
+    text-decoration: none;
 }
 .feedback .handle i {
     color: #E6003A;
-    padding: 15px 9px 10px 15px;
+    padding: 40px 5px 10px 19px;
     font-size: 4rem;
+}
+
+.has-error {
+    color: #BE2525;
+}
+input.has-error, textarea.has-error {
+    outline: 1px solid #BE2525;
 }
 
 @media (max-width: 1200px) {
@@ -620,5 +638,39 @@ main p {
     }
     .main-text iframe {
         width: 100%;
+    }
+
+    .feedback {
+        position: fixed;
+        z-index: 5;
+        bottom: -512px;
+        width: 350px;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        padding: 15px;
+        border: 1px solid #333;
+    }
+    .feedback.open {
+        bottom: 0;
+        transition:all 0.5s;
+    }
+    .feedback .handle {
+        position: absolute;
+        top: -67px;
+        cursor: pointer;
+        border-top-left-radius: 50%;
+        border-bottom-left-radius: unset;
+        left: -1px;
+        display: inline-block;
+        background: #D2D5D9;
+        line-height: 50px;
+        border: 1px solid #333;
+        border-bottom: none;
+        border-top-right-radius: 50%;
+    }
+    .feedback .handle i {
+        padding: 25px 5px 0px 5px;
+        font-size: 2.5rem;
     }
 }

@@ -124,6 +124,50 @@ class HomeController
     return true;
 	}
 
+    public function actionGetCall()
+    {
+        $username = $_POST['name'];
+        $email = $_POST['email'];
+        $phone = $_POST['phone'];
+        $content = $_POST['content'];
+        if(empty($username)) {
+            $username = "Користувач з сайту";
+        }
+        if(empty($email)) {
+            $email = "noemail@domain.com";
+        }
+        if(empty($content)) {
+            $content = "Користувач не побажав лишити повідомлення";
+        }
+        if (!empty($phone))
+        {
+            $contact = Contacts::getEmail();
+            $adminEmail = $contact['email'];
+            $message = "Від {$username}. Email: {$email}. Текст: {$content}.";
+            $subject = 'Із сайту';
+            $result = mail($adminEmail, $subject, $message);
+
+            if ($result)
+            {
+                echo "<div class='alert alert-success modal' style='width: 380px;margin: 0 auto; display:block;bottom:initial; overflow-y:hidden'><button class='close' data-dismiss='alert'><i class='fa fa-times'></i></button>" . Dict::_('SMSGSUCCESS') . "!</div>";
+                return true;
+            }
+            else
+            {
+                echo "<div class='alert alert-danger modal' style='width: 380px;margin: 0 auto; display:block;bottom:initial; overflow-y:hidden'><button class='close' data-dismiss='alert'><i class='fa fa-times'></i></button>" . Dict::_('SMSGFAIL') . "!</div>";
+                return false;
+            }
+        }
+        else
+        {
+            echo "<div class='alert alert-danger modal' style='width: 380px;margin: 0 auto; display:block;bottom:initial; overflow-y:hidden'><button class='close' data-dismiss='alert'><i class='fa fa-times'></i></button>Заповність всі поля</div>";
+            exit();
+        }
+
+
+        return true;
+    }
+
 	public function actionOrder()
 	{
 

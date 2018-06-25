@@ -69,6 +69,7 @@ return array(
     //Контакти
     'contacts' => 'home/contacts',
     'emailus' => 'home/emailUs',
+    'get-call' => 'home/getCall',
     'order' => 'home/order',
     // Головна сторінка
     'category/([a-z]+)' => 'category/category/$1',

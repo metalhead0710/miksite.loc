@@ -90,20 +90,27 @@ $categories = Category::getCategoriesList();
 <div class="feedback">
   <a class="handle" href="#">
     <i class="fa fa-phone"></i>
+    <i class="fa fa-envelope-o"></i>
   </a>
   <div class="content">
     <form action="" class="form">
+      <p class="text-info">
+        <?=Dict::_('FEEDBACKTEXT')?>
+      </p>
       <div class="form-group">
-        <input type="text" class="form-control" placeholder="<?=Dict::_('SUSERNAME')?>">
+        <input type="text" name="name" class="form-control" placeholder="<?=Dict::_('SUSERNAME')?>">
+        <span id="name"></span>
       </div>
       <div class="form-group">
-        <input type="text" class="form-control" placeholder="<?=Dict::_('SUSERMAIL')?>">
+        <input type="email" name="email" class="form-control" placeholder="<?=Dict::_('SUSERMAIL')?>">
+        <span id="email"></span>
       </div>
       <div class="form-group">
-        <input type="text" class="form-control" placeholder="<?=Dict::_('SUSERPHONE')?>">
+        <input type="text" required name="phone" class="form-control" placeholder="<?=Dict::_('SUSERPHONE')?>">
+        <span id="phone"></span>
       </div>
       <div class="form-group">
-        <textarea name="" id="" cols="30" rows="10" class="form-control" placeholder="<?=Dict::_('SMSG')?>"></textarea>
+        <textarea name="content" id="" cols="30" rows="10" class="form-control" placeholder="<?=Dict::_('SMSG')?>"></textarea>
       </div>
       <button class="btn btn-default" type="submit">
         <i class="fa fa-check"></i>
@@ -112,6 +119,7 @@ $categories = Category::getCategoriesList();
     </form>
   </div>
 </div>
+<div class="flash-message"></div>
 <div class="footer">
     <?php echo date("Y");?> &copy; <span style="color: #E3E3E3">MiK.</span> <?=Dict::_('SDISCLAIMER')?>
 </div>
