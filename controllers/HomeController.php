@@ -2,12 +2,14 @@
 
 class HomeController
 {
-	
+
     public function actionIndex()
     {
         //User::checkLogged();
-		$banners = Banner::getBanners();
+		$banner = Banner::getMainBanner();
         $categories = Category::getCategoriesList();
+        $news = News::getThreeLast();
+        $contacts = Contacts::getContactsList();
         $maintext = Maintext::getText();
 
         require_once(ROOT . '/views/home/index.php');
@@ -23,7 +25,7 @@ class HomeController
         require_once(ROOT . '/views/home/hits.php');
         return true;
     }
-	
+
 	public function actionPhotoIndex()
     {
         //User::checkLogged();
@@ -37,7 +39,7 @@ class HomeController
     {
         //User::checkLogged();
         $category = Photos::getCatagoryByUrl($url);
-        
+
         $categoryId = intval($category['id']);
         $count = Photos::getPhotosCount($categoryId);
         $photos = Photos::getPhotosByCategory($categoryId);
@@ -50,14 +52,29 @@ class HomeController
     {
         //User::checkLogged();
         $category = Photos::getCatNameById($categoryId);
-        
+
         $photoList = Photos::showMore($categoryId, $num);
 
         foreach ($photoList as $photo) {
-        echo '
-            <a class="photo-item" href="/upload/photos/' .$category['folder'].'/'.$photo['file'].'">
-                <img src="/upload/photos/'.$category['folder'].'/thumbs/'.$photo['file'].'" />
-            </a>
+            //$photoname = ($_SESSION['lang'] == 'ua') ? $photo['name'] : $photo['name_ru'];
+        echo '<div class="photo-item">
+            <a class="photo-link" href="/upload/photos/' .$category['folder'].'/'.$photo['file'].'">
+                <img class="img-responsive" src="/upload/photos/'.$category['folder'].'/thumbs/'.$photo['file'].'" />
+            <table class="table">
+				<tr>
+					<th>' . Dict::_('NAME') . '</th>
+					<td>' . $photo['name'] . '</td>
+				</tr>
+				<tr>
+					<!--<th>' . Dict::_('MODEL') . '</th>
+					<td>' . $photo['model'] . '</td>-->
+				</tr>
+				<tr>
+					<th>' . Dict::_('DIMS') . '</th>
+					<td>' . $photo['dimension'] . '</td>
+				</tr>
+			</table>
+            </a></div>
         ';
         }
         return true;
@@ -67,13 +84,13 @@ class HomeController
     {
         //User::checkLogged();
         $contact = Contacts::getContactsList();
-		
+
 		// вушка
         require_once(ROOT . '/views/home/contacts.php');
         return true;
     }
-	
-	public function actionEmailUs() 
+
+	public function actionEmailUs()
 	{
 		$username = $_POST['username'];
         $email = $_POST['email'];
@@ -85,7 +102,7 @@ class HomeController
 	        $message = "Від {$username}. Email: {$email}. Текст: {$content}.";
 	        $subject = 'Із сайту';
 	        $result = mail($adminEmail, $subject, $message);
-	        
+
 			if ($result)
 			{
 				echo "<div class='alert alert-success modal' style='width: 380px;margin: 0 auto; display:block;bottom:initial; overflow-y:hidden'><button class='close' data-dismiss='alert'><i class='fa fa-times'></i></button>" . Dict::_('SMSGSUCCESS') . "!</div>";
@@ -97,24 +114,24 @@ class HomeController
 				return false;
 			}
 		}
-		else 
+		else
 		{
 			echo "<div class='alert alert-danger modal' style='width: 380px;margin: 0 auto; display:block;bottom:initial; overflow-y:hidden'><button class='close' data-dismiss='alert'><i class='fa fa-times'></i></button>Заповність всі поля</div>";
 			exit();
 		}
-        
-        
+
+
     return true;
 	}
-	
+
 	public function actionOrder()
 	{
-		
+
 		$id = $_POST['id'];
 		$name = $_POST['name'];
 		$phone  = $_POST['phone'];
-		
-		if (!empty($name) && !empty($phone)) 
+
+		if (!empty($name) && !empty($phone))
 		{
 			$contact = Contacts::getEmail();
 			$adminEmail = $contact['email'];
@@ -141,7 +158,20 @@ class HomeController
 		}
         return true;
 	}
-	
+
+	public function actionNews() {
+        $news = News::getAllVisible();
+
+        require_once(ROOT . '/views/news/index.php');
+    }
+
+    public function actionNewsView($url)
+    {
+        $new = News::getNewByUrl($url);
+
+        require_once(ROOT . '/views/news/view.php');
+    }
+
 	public function actionUpload()
     {
     	//User::checkLogged();
@@ -185,4 +215,4 @@ class HomeController
         return true;
     }
 
-} 
+}

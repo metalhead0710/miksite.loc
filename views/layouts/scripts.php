@@ -6,5 +6,8 @@
             $('.mobbutton').toggleClass('fa-bars');
             $('.mobbutton').toggleClass('fa-times');
         });
+        $('.navbar-nav li a').filter(function() {
+            return this.href == window.location;
+        }).closest('li').addClass('active');
     });
 </script>

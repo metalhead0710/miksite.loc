@@ -1,5 +1,19 @@
 <?php
-head(($_SESSION['lang'] == 'ua') ? $category['name'] : $category['name_ru'], '<link rel="stylesheet" href="/template/plugins/lightbox/simplelightbox.css" />');
+if (!empty($category['title']) or !empty($category['title_ru']))
+{
+    $title = ($_SESSION['lang'] == 'ua') ?  $category['title'] :  $category['title_ru'];
+}
+else
+{
+    $title = ($_SESSION['lang'] == 'ua') ?  $category['name'] :  $category['name_ru'];
+}
+head(
+    $title,
+    '<link rel="stylesheet" href="/template/plugins/lightbox/simplelightbox.css" />',
+    null,
+    ($_SESSION['lang'] == 'ua') ?  $category['keywords'] :  $category['keywords_ru'],
+    ($_SESSION['lang'] == 'ua') ?  $category['description'] :  $category['description_ru']
+);
 ?>
 
 <div class="main-content-block">
@@ -8,24 +22,36 @@ head(($_SESSION['lang'] == 'ua') ? $category['name'] : $category['name_ru'], '<l
             <?=($_SESSION['lang'] == 'ua') ? $category['name'] : $category['name_ru']?>
         </h1>
     </div>
-	<div class="container" style="width:62%">
+	<div class="container">
 		<div class="photo-container gallery">
 			<?php if(count($photos) === 0) :?>
-			
+
 			<h4 class="text-center">
 				<?=Dict::_('NOPHOTOS')?>
 			</h4>
 			<?php endif; ?>
-			
+
 			<?php foreach ($photos as $photo) :?>
-			<a class="photo-item" href="/upload/photos/<?=$category['folder']?>/<?=$photo['file']?>">
-				<figure>
+			<div class="photo-item">
+				<a class="photo-link" href="/upload/photos/<?=$category['folder']?>/<?=$photo['file']?>">
 					<img class="img-responsive" src="/upload/photos/<?=$category['folder']?>/thumbs/<?=$photo['file']?>" alt="" />
-					<!--<?=Url::Img( '/upload/photos/' . $category['folder'] . '/thumbs/' . $photo['file'])?>-->
-				</figure>
-			</a>
+					<table class="table table-bordered">
+						<tr>
+							<th><?=Dict::_('NAME')?></th>
+							<td><?=$photo['name']?></td>
+						</tr>
+						<!--<tr>
+							<th><?=Dict::_('MODEL')?></th>
+							<td><?=$photo['model']?></td>
+						</tr>-->
+						<tr>
+							<th><?=Dict::_('DIMS')?></th>
+							<td><?=$photo['dimension']?></td>
+						</tr>
+					</table>
+				</a>
+			</div>
 			<?php endforeach; ?>
-			
 		</div>
 
         <div class="photo-action text-center">
@@ -52,8 +78,7 @@ scripts();
 <script src ="/template/plugins/lightbox/simple-lightbox.js"></script>
     <script>
         $(function(){
-            $('.photo-item').simpleLightbox();
-
+            $('.photo-link').simpleLightbox();
         });
 
         $(document).ready(function(){
@@ -79,11 +104,11 @@ scripts();
                             console.log("Більш нема фоток");
                             }else{
                             $(".gallery").append(data);
-                            num = num + 8;
-                            count = count - 8;
+                            num = num + 10;
+                            count = count - 10;
                             checkData(count);
                             $("#imgLoad").hide();
-							$('.photo-item').simpleLightbox();
+							$('.photo-link').simpleLightbox();
 
                         }
                     }

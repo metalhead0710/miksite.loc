@@ -10,7 +10,9 @@ class AdminSocialsController
             $vk = $_POST['vk'];
             $facebook = $_POST['facebook'];
             $youtube = $_POST['youtube'];
-			$res = Socials::updateContacts(1, $vk, $facebook, $youtube);
+            $instagram = $_POST['instagram'];
+            $g_plus = $_POST['g_plus'];
+			$res = Socials::updateContacts(1, $vk, $facebook, $youtube, $instagram, $g_plus);
 			
             header("Location: /admin/socials");
 			

@@ -14,7 +14,14 @@ return array(
     //Управління банерами
     'admin/banners/add' => 'adminBanner/add',
     'admin/banners/remove/([1-9]+)' => 'adminBanner/remove/$1',
+    'admin/banners/set/([1-9]+)' => 'adminBanner/set/$1',
     'admin/banners' => 'adminBanner/index',
+
+    // Управління новинами
+    'admin/news/create' => 'adminNews/create',
+    'admin/news/update/([0-9]+)' => 'adminNews/update/$1',
+    'admin/news/delete/([0-9]+)' => 'adminNews/delete/$1',
+    'admin/news' => 'adminNews/index',
 
     // Управління категоріями
     'admin/category/create' => 'adminCategory/create',
@@ -31,6 +38,8 @@ return array(
     // Управління фотографіями
     'admin/photo/add/([0-9]+)' => 'adminPhoto/add/$1',
     'admin/photo/edit/([0-9]+)' => 'adminPhoto/edit/$1',
+    'admin/photo/edit-one' => 'adminPhoto/editOne',
+    'admin/photo/sort-out' => 'adminPhoto/sortOut',
     'admin/photo/update/([0-9]+)' => 'adminPhoto/update/$1',
     'admin/photo/delete/([0-9]+)' => 'adminPhoto/deleteOnePhoto/$1',
     'admin/photo/deletemassive/([0-9]+)' => 'adminPhoto/deleteMassivePhoto/$1',
@@ -63,6 +72,8 @@ return array(
     'order' => 'home/order',
     // Головна сторінка
     'category/([a-z]+)' => 'category/category/$1',
+    'news/([a-z]+)' => 'home/newsView/$1',
+    'news' => 'home/news',
     'hits' => 'home/hits',
     'uploaded?' => 'home/upload',
     '' => 'home/index',

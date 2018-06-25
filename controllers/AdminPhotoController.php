@@ -25,6 +25,13 @@ class AdminPhotoController {
             $sortOrder = intval($_POST['sort_order']);
             $folder = Translit::make_lat($name);
             $picture = $_FILES["picture"];
+            $title = $_POST['title'];
+            $title_ru = $_POST['title_ru'];
+            $keywords = $_POST['keywords'];
+            $keywords_ru = $_POST['keywords_ru'];
+            $description = $_POST['description'];
+            $description_ru = $_POST['description_ru'];
+
 			if (Photos::checkName($url, $url_ru) == FALSE)
 			{
 				die("Виберіть інше ім'я для категорії");
@@ -59,7 +66,21 @@ class AdminPhotoController {
             $desired_width = 350;
             make_thumb($src, $dest, $desired_width);
 			}
-            Photos::createCategory($name, $url, $name_ru, $url_ru, $sortOrder, $folder, $picture['name'] );
+            Photos::createCategory(
+                $name,
+                $url,
+                $name_ru,
+                $url_ru,
+                $sortOrder,
+                $folder,
+                $picture['name'],
+                $title,
+                $title_ru,
+                $keywords,
+                $keywords_ru,
+                $description,
+                $description_ru
+            );
 
 			header("Location: /admin/photocat/");
 
@@ -83,7 +104,12 @@ class AdminPhotoController {
             
             $url_ru = Translit::make_lat($name_ru);
             $sortOrder = $_POST['sort_order'];
-
+	        $title = $_POST['title'];
+	        $title_ru = $_POST['title_ru'];
+	        $keywords = $_POST['keywords'];
+	        $keywords_ru = $_POST['keywords_ru'];
+	        $description = $_POST['description'];
+	        $description_ru = $_POST['description_ru'];
             $picture = $_FILES["picture"];
 			include_once('img_func.php');
             if(!empty($picture['name'])) {
@@ -122,7 +148,7 @@ class AdminPhotoController {
             $desired_width = 350;
             make_thumb($src, $dest, $desired_width);
 
-            Photos::updateCategory($id, $name, $url, $name_ru, $url_ru, $sortOrder, $picture['name'] );
+            Photos::updateCategory($id, $name, $url, $name_ru, $url_ru, $sortOrder, $picture['name'],  $title, $title_ru, $keywords, $keywords_ru, $description, $description_ru);
 
 
             header("Location: /admin/photocat/");
@@ -212,42 +238,28 @@ class AdminPhotoController {
         User::checkLogged();
         $photocat = Photos::getCatNameById($id);
         $photos = Photos::getAllPhotosByCategory($id);
-
-        /*if (isset($_POST['submit']))
-        {include_once('img_func.php');
-            $folder = $photocat['folder'];
-            $picture = $_FILES["picture"];
-            $total = count($picture['name']);
-            for($i=0; $i<$total; $i++) {
-                if (isset($folder)) {
-                    if (!file_exists(ROOT . '/upload/photos/' . $folder))
-                    {
-                        mkdir(ROOT . '/upload/photos/' . $folder);
-                    }
-                }
-                if(isset($_FILES["picture"])) {
-                    $destiny = ROOT . '/upload/photos/' . $folder . '/';
-                    copy($_FILES["picture"]['tmp_name'][$i], $destiny . $_FILES["picture"]['name'][$i]);
-                }
-
-                $src= ROOT . '/upload/photos/' . $folder . '/' . $picture['name'][$i];
-                $dest = ROOT . '/upload/photos/' . $folder . '/thumbs/' . $picture['name'][$i];
-
-
-                $desired_width = 350;
-                make_thumb($src, $dest, $desired_width);
-
-                Photos::addPhoto($picture['name'][$i], $id);
-            }
-
-            header("Location: /admin/photocat/");
-
-        }*/
-
-
         require_once (ROOT . '/views/admin/admin_photo/edit.php');
+
         return true;
 
+    }
+
+    public function actionEditOne()
+    {
+    	User::checkLogged();
+    	$photo = $_POST['photo'];
+        $result = Photos::editOnePhoto($photo);
+        if($result)
+            $data = Photos::getOnePhoto($photo['photoId']);
+            echo json_encode($data);
+
+    	return false;
+    }
+
+    public function actionSortOut()
+    {
+        $ids = $_POST['ids'];
+        if(Photos::sortOut($ids)) echo json_encode('success');
     }
 
     public function actionDeleteOnePhoto($photoId)

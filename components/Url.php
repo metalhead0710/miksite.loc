@@ -1,27 +1,27 @@
 <?php
     class Url
-    {        
+    {
         public static function getInternalRoute($routes, $uri)
 	    {
 	    	foreach($routes as $pattern => $route)
 	        {
 	            if(preg_match("~$pattern~", $uri))
-	            {                
+	            {
 	                $internalRoute = preg_replace("~$pattern~", $route, $uri);
-	                return $internalRoute;              
+	                return $internalRoute;
 	            }
 	        }
 		}
-		
+
 		public static function Img($src, $cssClass = null)
 		{
 			$html = '<img src = "http://' . $_SERVER['SERVER_NAME'] .'/' . $src . '" class="' . $cssClass. ' " />';
 			return $html;
 		}
-		
+
 		public static function langPart()
 		{
-			if($_SESSION['lang'] == 'ua') 
+			if($_SESSION['lang'] == 'ua')
 			{
 				return null;
 			}
@@ -30,7 +30,7 @@
 				return '/ru';
 			}
 		}
-		
+
 		public static function htmlLink($href, $cssClass = null , $innerHtml)
 		{
 			if (!$_SESSION['lang'])
@@ -41,12 +41,12 @@
 			{
 				$lang = $_SESSION['lang'];
 			}
-			
+
 			$html = '<a href= "http://' . $_SERVER['SERVER_NAME'] . $lang . '/' . $href . '" class="' . $cssClass . '" >' . $innerHtml . '</a>';
 			return $html;
 		}
 		public static function getLang()
-		{				
+		{
             $url = trim($_SERVER['REQUEST_URI'], '/');
             $arr = explode('/', $url);
             if ($arr[0] === 'ru')
@@ -58,8 +58,8 @@
 				return 'ua';
 			}
 		}
-		
-		
+
+
 		public static function getCurrentUrlUA()
 		{
 			$url = trim($_SERVER['REQUEST_URI'], '/');
@@ -70,7 +70,7 @@
 			}
 			$page = array_shift($arr);
 			$param = array_shift($arr);
-			
+
 			if ($page === 'photos')
 			{
 				$category = Photos::getCategoryUrls($param);
@@ -83,12 +83,18 @@
 				$currentUrl = '/'.$page . '/' . $category['url'];
 				return $currentUrl;
 			}
+			else if ($page === 'news')
+			{
+				$news = News::getNewsUrls($param);
+				$currentUrl = '/'.$page . '/' . $news['url'];
+				return $currentUrl;
+			}
 			else
 			{
 				$currentUrl = '/' . $page;
 				return $currentUrl;
 			}
-			
+
 		}
 		public static function getCurrentUrlRU()
 		{
@@ -100,7 +106,7 @@
 			}
 			$page = array_shift($arr);
 			$param = array_shift($arr);
-			
+
 			if ($page === 'photos')
 			{
 				$category = Photos::getCategoryUrls($param);
@@ -113,10 +119,16 @@
 				$currentUrl = '/ru/'.$page . '/' . $category['url_ru'];
 				return $currentUrl;
 			}
+			else if ($page === 'news')
+			{
+				$news = News::getNewsUrls($param);
+				$currentUrl = '/ru/'.$page . '/' . $news['url_ru'];
+				return $currentUrl;
+			}
 			else
 			{
 				$currentUrl = '/ru/' . $page;
-				
+
 			}
 			return $currentUrl;
 		}

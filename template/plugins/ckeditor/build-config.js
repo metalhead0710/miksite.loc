@@ -2,6 +2,7 @@
  * @license Copyright (c) 2003-2016, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md or http://ckeditor.com/license
  */
+
 /**
  * This file was added automatically by CKEditor builder.
  * You may re-use it at any time to build CKEditor again.
@@ -22,6 +23,7 @@
  *    This file is not used by CKEditor, you may remove it.
  *    Changing this file will not change your CKEditor configuration.
  */
+
 var CKBUILDER_CONFIG = {
 	skin: 'office2013',
 	preset: 'standard',

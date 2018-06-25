@@ -22,35 +22,42 @@ head(Dict::_('SCONTACTS'));
                 <?php endif;?>
                 <?php if ($contact['email'] !='') :?>
                 <p>
+                    <a href="mailto:<?=$contact['email']?>">
                         <span class="contact-icon">
                             <i class="fa fa-envelope-o"></i>
                         </span>
-                    <?=$contact['email']?>
+                        <?=$contact['email']?>
+                    </a>
                 </p>
                 <?php endif;?>
                 <?php if ($contact['tel1'] !='') :?>
                 <p>
+                    <a href="tel:<?=$contact['tel1']?>">
                         <span class="contact-icon">
                             <i class="fa fa-phone"></i>
                         </span>
-                    <?=$contact['tel1']?>
-
+                        <?=$contact['tel1']?>
+                    </a>
                 </p>
                 <?php endif;?>
                 <?php if ($contact['tel2'] !='') :?>
                 <p>
+                    <a href="tel:<?=$contact['tel2']?>">
                         <span class="contact-icon">
                             <i class="fa fa-mobile"></i>
                         </span>
-                    <?=$contact['tel2']?>
+                        <?=$contact['tel2']?>
+                    </a>
                 </p>
                 <?php endif;?>
                 <?php if ($contact['tel3'] !='') :?>
                 <p>
+                    <a href="tel:<?=$contact['tel3']?>">
                         <span class="contact-icon">
                             <i class="fa fa-mobile"></i>
                         </span>
-                    <?=$contact['tel3']?>
+                        <?=$contact['tel3']?>
+                    </a>
                 </p>
                 <?php endif;?>
             </div>

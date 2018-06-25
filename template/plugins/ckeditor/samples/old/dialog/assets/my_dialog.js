@@ -2,6 +2,7 @@
  * Copyright (c) 2003-2016, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md or http://ckeditor.com/license
  */
+
 CKEDITOR.dialog.add( 'myDialog', function() {
 	return {
 		title: 'My Dialog',
@@ -44,3 +45,4 @@ CKEDITOR.dialog.add( 'myDialog', function() {
 		]
 	};
 } );
+

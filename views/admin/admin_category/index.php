@@ -37,7 +37,7 @@ adminhead($page);
 					?>
 				</td>
 				<td>
-					<?=iconv_substr($category['text'],0, 500, 'UTF-8'); ?>
+					<?=iconv_substr(strip_tags($category['text']),0, 500, 'UTF-8'); ?>
 				</td>
 				<td>
 					<div class="btn-group-vertical">

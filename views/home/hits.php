@@ -1,5 +1,5 @@
 <?php
-Head(Dict::_('SHIT'), '<link href="/template/css/bootstrap-responsive.css" rel="stylesheet"><link href="/template/css/hits.css" rel="stylesheet">');
+Head(Dict::_('SHIT'), '<link href="/template/css/bootstrap-responsive.css" rel="stylesheet" /><link href="/template/css/hits.css" rel="stylesheet" />');
 ?>
 <div class="main-content-block">
     <div class="pg-header mg-bt-50">
@@ -7,7 +7,7 @@ Head(Dict::_('SHIT'), '<link href="/template/css/bootstrap-responsive.css" rel="
             <?=Dict::_('SHIT')?>
         </h1>
     </div>
-    <div class="container" style="width:80%">
+    <div class="container" style="width:65%">
     	<div class="results"></div>
 		<div class="row">
 			<?php foreach($hits as $hit) :?>
@@ -64,7 +64,7 @@ footer();
 
 scripts();
 ?>
-<!--<script src ="/template/plugins/lightbox/simple-lightbox.js"></script>-->
+
 <script>
 	$(function(){
 		//$('.gallery a').simpleLightbox();

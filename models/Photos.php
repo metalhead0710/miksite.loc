@@ -7,18 +7,7 @@ class Photos
         $db = Db::getConnection();
 		$result = $db->query('SELECT * FROM photo_cat order by sort_order asc');
 		$i = 0;
-        $catsList = array();
-        while ($row = $result->fetch()) {
-            $catsList[$i]['id'] = $row['id'];
-            $catsList[$i]['name'] = $row['name'];
-            $catsList[$i]['url'] = $row['url'];
-            $catsList[$i]['name_ru'] = $row['name_ru'];
-            $catsList[$i]['url_ru'] = $row['url_ru'];
-            $catsList[$i]['sort_order'] = $row['sort_order'];
-            $catsList[$i]['folder'] = $row['folder'];
-            $catsList[$i]['pic'] = $row['pic'];
-            $i++;
-        }
+        $catsList = $result->fetchAll();
 		$db = null;
         return $catsList;
     }
@@ -33,7 +22,7 @@ class Photos
 		$db = null;
         return $result->fetch();
     }
-    
+
     public static function getCatagoryByUrl($url)
     {
         $db = Db::getConnection();
@@ -45,7 +34,7 @@ class Photos
 		$db = null;
         return $result->fetch();
     }
-    
+
     public static function getCategoryUrls($url)
     {
         $db = Db::getConnection();
@@ -60,36 +49,25 @@ class Photos
     public static function getPhotosByCategory($categoryId)
     {
         $db = Db::getConnection();
-		$sql = 'SELECT id, file FROM photos where categoryId = :id limit 8';
+		$sql = 'SELECT * FROM photos where categoryId = :id ORDER BY sort_order limit 10';
 		$res = $db->prepare($sql);
         $res->bindParam(':id', $categoryId, PDO::PARAM_INT);
         $res->setFetchMode(PDO::FETCH_ASSOC);
         $res->execute();
-        $i = 0;
-        $photoList = array();
-        while ($row = $res->fetch()) {
-            $photoList[$i]['id'] = $row['id'];
-            $photoList[$i]['file'] = $row['file'];
-            $i++;
-        }
+        $photoList = $res->fetchAll();
+
 		$db = null;
         return $photoList;
     }
     public static function getAllPhotosByCategory($categoryId)
     {
         $db = Db::getConnection();
-        $sql = 'SELECT id, file FROM photos where categoryId = :id';
+        $sql = 'SELECT * FROM photos where categoryId = :id order by sort_order';
         $res = $db->prepare($sql);
         $res->bindParam(':id', $categoryId, PDO::PARAM_INT);
         $res->setFetchMode(PDO::FETCH_ASSOC);
         $res->execute();
-        $i = 0;
-        $photoList = array();
-        while ($row = $res->fetch()) {
-            $photoList[$i]['id'] = $row['id'];
-            $photoList[$i]['file'] = $row['file'];
-            $i++;
-        }
+        $photoList = $res->fetchAll();
 		$db = null;
         return $photoList;
     }
@@ -101,7 +79,7 @@ class Photos
         $result->bindParam(':id', $id, PDO::PARAM_INT);
         $result->setFetchMode(PDO::FETCH_ASSOC);
         $result->execute();
-		$db = null;	
+		$db = null;
         return $result->fetch();
     }
     public static function getPhotosCount($categoryId)
@@ -117,7 +95,7 @@ class Photos
 		$db = null;
         return $count;
     }
-	
+
 	public static function checkName($url, $url_ru)
 	{
 		$db = Db::getConnection();
@@ -133,15 +111,29 @@ class Photos
 		else
 		{
 			return true;
-		}        
+		}
 	}
-	
-    public static function createCategory($name, $url, $name_ru, $url_ru, $sortOrder, $folder, $pic)
+
+    public static function createCategory(
+            $name,
+            $url,
+            $name_ru,
+            $url_ru,
+            $sortOrder,
+            $folder,
+            $pic,
+            $title,
+            $title_ru,
+            $keywords,
+            $keywords_ru,
+            $description,
+            $description_ru
+    )
     {
         $db = Db::getConnection();
 
-        $sql = 'INSERT INTO photo_cat (name, url, name_ru, url_ru, sort_order, folder, pic) '
-            . 'VALUES (:name, :url, :name_ru, :url_ru, :sort_order, :folder, :pic)';
+        $sql = 'INSERT INTO photo_cat (name, url, name_ru, url_ru, sort_order, folder, pic, title, title_ru, keywords, keywords_ru, description, description_ru) '
+            . 'VALUES (:name, :url, :name_ru, :url_ru, :sort_order, :folder, :pic, :title, :title_ru, :keywords, :keywords_ru, :description, :description_ru)';
         $result = $db->prepare($sql);
         $result->bindParam(':name', $name, PDO::PARAM_STR);
         $result->bindParam(':url', $url, PDO::PARAM_STR);
@@ -150,26 +142,52 @@ class Photos
         $result->bindParam(':sort_order', $sortOrder, PDO::PARAM_INT);
         $result->bindParam(':folder', $folder, PDO::PARAM_STR);
         $result->bindParam(':pic', $pic, PDO::PARAM_STR);
+        $result->bindParam(':title', $title, PDO::PARAM_STR);
+        $result->bindParam(':title_ru', $title_ru, PDO::PARAM_STR);
+        $result->bindParam(':keywords', $keywords, PDO::PARAM_STR);
+        $result->bindParam(':keywords_ru', $keywords_ru, PDO::PARAM_STR);
+        $result->bindParam(':description', $description, PDO::PARAM_STR);
+        $result->bindParam(':description_ru', $description_ru, PDO::PARAM_STR);
         $result->execute();
 		$db = null;
         return $result;
     }
-	
-	public static function updateCategory($id, $name, $url, $name_ru, $url_ru, $sortOrder, $pic)
+
+	public static function updateCategory(
+	    $id,
+        $name,
+        $url,
+        $name_ru,
+        $url_ru,
+        $sortOrder,
+        $pic,
+        $title,
+        $title_ru,
+        $keywords,
+        $keywords_ru,
+        $description,
+        $description_ru
+    )
     {
 		$id = intval($id);
         $db = Db::getConnection();
 
         $sql = "UPDATE photo_cat
-            SET 
-                name = :name, 
+            SET
+                name = :name,
                 url = :url,
-                name_ru = :name_ru, 
+                name_ru = :name_ru,
                 url_ru = :url_ru,
-                sort_order = :sort_order, 
-                pic = :pic
+                sort_order = :sort_order,
+                pic = :pic,
+                title = :title,
+                title_ru = :title_ru,
+                keywords = :keywords,
+                keywords_ru = :keywords_ru,
+                description = :description,
+                description_ru = :description_ru
             WHERE id = :id";
-			
+
         $result = $db->prepare($sql);
         $result->bindParam(':id', $id, PDO::PARAM_STR);
         $result->bindParam(':name', $name, PDO::PARAM_STR);
@@ -178,9 +196,15 @@ class Photos
         $result->bindParam(':url_ru', $url_ru, PDO::PARAM_STR);
         $result->bindParam(':sort_order', $sortOrder, PDO::PARAM_INT);
         $result->bindParam(':pic', $pic, PDO::PARAM_STR);
+        $result->bindParam(':title', $title, PDO::PARAM_STR);
+        $result->bindParam(':title_ru', $title_ru, PDO::PARAM_STR);
+        $result->bindParam(':keywords', $keywords, PDO::PARAM_STR);
+        $result->bindParam(':keywords_ru', $keywords_ru, PDO::PARAM_STR);
+        $result->bindParam(':description', $description, PDO::PARAM_STR);
+        $result->bindParam(':description_ru', $description_ru, PDO::PARAM_STR);
         $result->execute();
 		$db = null;
-        return $result->fetch();
+        return $result;
     }
     public static function deleteCategory($id)
     {
@@ -209,7 +233,7 @@ class Photos
         $db = Db::getConnection();
         $categoryId = intval($categoryId);
         $num = intval($num);
-        $sql = 'SELECT * FROM photos where categoryId = :id limit :num , 8';
+        $sql = 'SELECT * FROM photos where categoryId = :id limit :num , 10';
         $res = $db->prepare($sql);
         $res->bindParam(':id', $categoryId, PDO::PARAM_INT);
         $res->bindParam(':num', $num, PDO::PARAM_INT);
@@ -219,12 +243,50 @@ class Photos
         $photoList = array();
         while ($row = $res->fetch()) {
             $photoList[$i]['id'] = $row['id'];
+			$photoList[$i]['name']  =$row['name'];
             $photoList[$i]['file'] = $row['file'];
             $i++;
         }
 		$db = null;
         return $photoList;
     }
+
+    public static function editOnePhoto($photo)
+    {
+        $id = intval($photo['photoId']);
+        $db = Db::getConnection();
+        $sql = "UPDATE photos
+				SET
+						name = :name,
+						name_ru = :name_ru,
+						model = :model,
+						dimension = :dimension
+				WHERE id = :id";
+        $result = $db->prepare($sql);
+        $result->bindParam(':id', $id, PDO::PARAM_INT);
+        $result->bindParam(':name', $photo['name'], PDO::PARAM_STR);
+        $result->bindParam(':name_ru', $photo['name_ru'], PDO::PARAM_STR);
+        $result->bindParam(':model', $photo['model'], PDO::PARAM_STR);
+        $result->bindParam(':dimension', $photo['dimension'], PDO::PARAM_STR);
+    	$result->execute();
+
+    	return true;
+    }
+
+    public static function sortOut(array $data) : bool
+    {
+        $db = Db::getConnection();
+        $query = $db->prepare("UPDATE photos SET sort_order = :sort_order where id = :id");
+        $query->bindParam(":sort_order", $sort_order);
+        $query->bindparam(":id", $id);
+        foreach($data as $row) {
+            $id = $row['id'];
+            $sort_order = $row['sort'];
+            $query->execute();
+        }
+        return true;
+    }
+
     public static function deleteOnePhoto($photoId)
     {
         $db = Db::getConnection();
@@ -236,4 +298,4 @@ class Photos
         $res->execute();
 		$db = null;
     }
-} 
+}

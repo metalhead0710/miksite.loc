@@ -76,6 +76,9 @@
                         <a href="/admin/banners"><i class="fa fa-fw fa-photo"></i> Банери</a>
                     </li>
                     <li>
+                        <a href="/admin/news"><i class="fa fa-fw fa-newspaper-o"></i> Новини</a>
+                    </li>
+                    <li>
                         <a href="/admin/hits"><i class="fa fa-fw fa-shopping-cart"></i> Хіти продаж</a>
                     </li>
                     <li>

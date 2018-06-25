@@ -18,12 +18,36 @@ adminhead($page);
 					<label> Назва категорії </label>
 					<input class="form-control" required name="name" placeholder="Назва категорії" type="text" value="<?=$photocat['name']; ?>">
 				</div>
+        <div class="form-group">
+          <label> Заголовок сторінки </label>
+          <input class="form-control" required name="title" placeholder="SEO заголовок" type="text" value="<?=$photocat['title']; ?>">
+        </div>
+        <div class="form-group">
+          <label> Ключові слова </label>
+          <input class="form-control" required name="keywords" placeholder="SEO ключові слова" type="text" value="<?=$photocat['keywords']; ?>">
+        </div>
+        <div class="form-group">
+          <label> Опис </label>
+          <input class="form-control" required name="description" placeholder="SEO опис" type="text" value="<?=$photocat['description']; ?>">
+        </div>
 			</div>
 			<div class="tab-pane fade" id="ru">
 				<div class="form-group">
 					<label> Назва категорії </label>
 					<input class="form-control" name="name_ru" placeholder="Назва категорії на русіше" type="text" value="<?=$photocat['name_ru']; ?>">
 				</div>
+        <div class="form-group">
+          <label> Заголовок сторінки </label>
+          <input class="form-control" required name="title_ru" placeholder="SEO заголовок  на русіше" type="text" value="<?=$photocat['title_ru']; ?>">
+        </div>
+        <div class="form-group">
+          <label> Ключові слова </label>
+          <input class="form-control" required name="keywords_ru" placeholder="SEO ключові слова на русіше" type="text" value="<?=$photocat['keywords_ru']; ?>">
+        </div>
+        <div class="form-group">
+          <label> Опис </label>
+          <input class="form-control" required name="description_ru" placeholder="SEO опис на русіше" type="text" value="<?=$photocat['description_ru']; ?>">
+        </div>
 			</div>
 		</div>
 		<div class="form-group">

@@ -2,9 +2,7 @@
 /**
  * ф-ця __autoload для автоматичного підключення класів
  */
-function __autoload($class_name)
-{
-    // папки, у яких можуть бути потрібні класи
+spl_autoload_register(function ($class_name) {
     $array_paths = array(
         '/models/',
         '/components/',
@@ -18,5 +16,6 @@ function __autoload($class_name)
         if (is_file($path)) {
             include_once $path;
         }
-    }	
-}
+    }
+});
+

@@ -2,6 +2,7 @@
 body.hidden-scroll {
   /* overflow: hidden; */
 }
+
 /* line 4, ../sass/simplelightbox.scss */
 .sl-overlay {
   position: fixed;
@@ -14,6 +15,7 @@ body.hidden-scroll {
   display: none;
   z-index: 1006;
 }
+
 /* line 15, ../sass/simplelightbox.scss */
 .sl-wrapper {
   z-index: 1000;
@@ -41,6 +43,7 @@ body.hidden-scroll {
   z-index: 1015;
   width: 50px
 }
+
 .sl-close:hover {
 	outline: none;
 }
@@ -127,6 +130,7 @@ body.hidden-scroll {
   color: #fff;
   z-index: 1005;
 }
+
 /* line 114, ../sass/simplelightbox.scss */
 .sl-spinner {
   display: none;
@@ -146,6 +150,7 @@ body.hidden-scroll {
   -o-animation: pulsate 1s ease-out infinite;
   animation: pulsate 1s ease-out infinite;
 }
+
 /* line 133, ../sass/simplelightbox.scss */
 .sl-scrollbar-measure {
   position: absolute;
@@ -154,6 +159,7 @@ body.hidden-scroll {
   height: 50px;
   /* overflow: scroll; */
 }
+
 @-webkit-keyframes pulsate {
   0% {
     transform: scale(0.1);

@@ -5,21 +5,25 @@ class Banner
     public static function getBanners()
     {
         $db = Db::getConnection();
-        $sql = 'SELECT * FROM banners order by sort_order';
+        $sql = 'SELECT * FROM banners';
         $result = $db->prepare($sql);
         $result->setFetchMode(PDO::FETCH_ASSOC);
         $result->execute();
-        $i = 0;
-        $bannerList = array();
-        while ($row = $result->fetch()) {
-            $bannerList[$i]['id'] = $row['id'];
-            $bannerList[$i]['file'] = $row['file'];
-            $bannerList[$i]['sort_order'] = $row['sort_order'];
-            $i++;
-        }
 		$db = null;
-        return $bannerList;
+        return $result->fetchAll();
     }
+
+    public static function getMainBanner()
+    {
+        $db = Db::getConnection();
+        $sql = 'SELECT * FROM banners where banners.set = true';
+        $result = $db->prepare($sql);
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        $result->execute();
+        $db = null;
+        return $result->fetch();
+    }
+
     public static function getOneBanner($id)
     {
         $db = Db::getConnection();
@@ -31,18 +35,29 @@ class Banner
 		$db = null;
         return $result->fetch();
     }
-    public static function addBanner($file, $sort_order)
+    public static function addBanner($file)
     {
         $db = Db::getConnection();
-        $sql = 'INSERT INTO banners (file, sort_order) '
-            . 'VALUES (:file, :sort_order)';
+        $sql = 'INSERT INTO banners (file) VALUES (:file)';
         $result = $db->prepare($sql);
         $result->bindParam(':file', $file, PDO::PARAM_STR);
-        $result->bindParam(':sort_order', $sort_order, PDO::PARAM_INT);
         $res = $result->execute();
 		$db = null;
 		return $res;
     }
+
+    public static function set($id)
+    {
+        $db = Db::getConnection();
+        $db->query('UPDATE banners SET banners.set = 0');
+        $photoId = intval($id);
+        $sql = 'UPDATE banners SET banners.set = 1 where id = :id';
+        $res = $db->prepare($sql);
+        $res->bindParam(':id', $id, PDO::PARAM_INT);
+
+        $res->execute();
+    }
+
     public static function deleteBanner($id)
     {
         $db = Db::getConnection();
@@ -50,7 +65,6 @@ class Banner
         $sql = 'DELETE FROM banners where id = :id';
         $res = $db->prepare($sql);
         $res->bindParam(':id', $id, PDO::PARAM_INT);
-        $res->setFetchMode(PDO::FETCH_ASSOC);
         $res->execute();
 		$db = null;
     }

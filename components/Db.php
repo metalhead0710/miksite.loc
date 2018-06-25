@@ -1,6 +1,8 @@
 <?php
+
 class Db
 {
+
    public static function getConnection()
     {
         $paramsPath = ROOT . '/config/db_params.php';
@@ -10,6 +12,7 @@ class Db
         $db = new PDO($dsn, $params['user'], $params['password']);
         // Задаєм кодування
         $db->exec("set names utf8");
+
         return $db;
     }
 }

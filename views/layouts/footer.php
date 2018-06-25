@@ -41,14 +41,21 @@ $categories = Category::getCategoriesList();
                 <?php if ($socials['youtube'] != '') :?>
                     <a class="social-icons" href="<?=$socials['youtube']?>"><i class="fa fa-youtube-play"></i></a>
                 <?php endif;?>
+                <?php if ($socials['instagram'] != '') :?>
+                    <a class="social-icons" href="<?=$socials['instagram']?>"><i class="fa fa-instagram"></i></a>
+                <?php endif;?>
+                <?php if ($socials['g_plus'] != '') :?>
+                    <a class="social-icons" href="<?=$socials['g_plus']?>"><i class="fa fa-google-plus-square"></i></a>
+                <?php endif;?>
 
             </div>
             <div class="col-md-3 col-md-offset-1 kolonka col-sm-4 col-xs-12">
                 <h4><?=Dict::_('SNAVIG')?></h4>
                 <ul>
-                    <!--<li><a href="<?=$_SESSION['lang']?>/"><?=Dict::_('SMAIN')?></a></li>-->
+                    <li><a href="<?=Url::langPart()?>/news"><?=Dict::_('NEWS')?></a></li>
                     <li><a href="<?=Url::langPart()?>/photos/"><?=Dict::_('SPHOTO')?></a></li>
                     <li><a href="<?=Url::langPart()?>/contacts/"><?=Dict::_('SCONTACTS')?></a></li>
+                    <li><a href="<?=Url::langPart()?>/hits/"><?=Dict::_('SHIT')?></a></li>
                 </ul>
             </div>
             <div class="col-md-3 col-md-offset-1 kolonka col-sm-4 col-xs-12">
@@ -68,21 +75,42 @@ $categories = Category::getCategoriesList();
                     ?>
                 </p>
                 <p>
-                    <?php if ($contacts['tel2'] != '')
-                    {
-                        echo $contacts['tel2'];
-                    }
-                    ?>
+                    <?php if ($contacts['tel1'] != '') :?>
+                        <a href="tel:<?=$contacts['tel1']?>"><?=$contacts['tel1'];?></a>
+                    <?php endif;?>
                     <br>
-                    <?php if ($contacts['tel3'] != '')
-                    {
-                        echo $contacts['tel3'];
-                    }
-                    ?>
+                    <?php if ($contacts['tel2'] != '') :?>
+                        <a href="tel:<?=$contacts['tel2']?>"><?=$contacts['tel2'];?></a>
+                    <?php endif;?>
                 </p>
             </div>
         </div>
     </div>
+</div>
+<div class="feedback">
+  <a class="handle" href="#">
+    <i class="fa fa-phone"></i>
+  </a>
+  <div class="content">
+    <form action="" class="form">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="<?=Dict::_('SUSERNAME')?>">
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="<?=Dict::_('SUSERMAIL')?>">
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="<?=Dict::_('SUSERPHONE')?>">
+      </div>
+      <div class="form-group">
+        <textarea name="" id="" cols="30" rows="10" class="form-control" placeholder="<?=Dict::_('SMSG')?>"></textarea>
+      </div>
+      <button class="btn btn-default" type="submit">
+        <i class="fa fa-check"></i>
+        <?=Dict::_('SSEND')?>
+      </button>
+    </form>
+  </div>
 </div>
 <div class="footer">
     <?php echo date("Y");?> &copy; <span style="color: #E3E3E3">MiK.</span> <?=Dict::_('SDISCLAIMER')?>

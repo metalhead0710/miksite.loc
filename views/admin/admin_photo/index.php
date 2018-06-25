@@ -11,6 +11,7 @@ adminhead($page);
         <thead>
         <tr>
             <th>Назва</th>
+            <th>Ключові слова</th>
             <th>Порядок</th>
             <th>Папка</th>
             <th width="450">Дії</th>
@@ -20,7 +21,12 @@ adminhead($page);
         <?php foreach($photocats as $photocat) :?>
             <tr data-id="<?=$photocat['id'] ?>">
                 <td>
-                    <?=$photocat['name'] ?>
+                  <a href ="/admin/photo/update/<?=$photocat['id'] ?>">
+                      <?=$photocat['name'] ?>
+                  </a>
+                </td>
+                <td>
+                    <?=$photocat['keywords'] ?>
                 </td>
                 <td>
                     <?=$photocat['sort_order'] ?>

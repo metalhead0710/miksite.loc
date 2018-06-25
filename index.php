@@ -2,7 +2,7 @@
 
 // FRONT CONTROLLER
 //помилки
-INI_SET('DISPLAY_ERRORS', 1);
+INI_SET('DISPLAY_ERRORS', 0);
 ERROR_REPORTING(E_ALL^E_NOTICE);
 
 session_start();
@@ -32,7 +32,7 @@ $router = new Router();
 $router->run();
 
 // Функції на вушки
-//mysqli_connect('mysql.hostinger.com.ua', 'u426170891_mik', '1q2w3e8i9o0p','u426170891_mik') or die("connection failed");
+
 function head($page, $style = null, $banners = null, $meta_keys = null, $meta_description = null)
 {
     include ROOT. '/views/layouts/header.php';

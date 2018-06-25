@@ -3,11 +3,14 @@
 	By André Rinas, www.andreknieriem.de
 	Available for use under the MIT License
 */
+
 ;( function( $, window, document, undefined )
 {
 	'use strict';
+
 $.fn.simpleLightbox = function( options )
 {
+
 	var options = $.extend({
 		overlay:			true,
 		spinner:			true,
@@ -40,13 +43,16 @@ $.fn.simpleLightbox = function( options )
 	 	alertErrorMessage:	'Image not found, next image will be loaded',
 	 	additionalHtml:		false
 	 }, options );
+
 	// global variables
 	var touchDevice	= ( 'ontouchstart' in window ),
 	    pointerEnabled = window.navigator.pointerEnabled || window.navigator.msPointerEnabled,
 	    touched = function( event ){
             if( touchDevice ) return true;
+
             if( !pointerEnabled || typeof event === 'undefined' || typeof event.pointerType === 'undefined' )
                 return false;
+
             if( typeof event.MSPOINTER_TYPE_MOUSE !== 'undefined' )
             {
                 if( event.MSPOINTER_TYPE_MOUSE != event.pointerType )
@@ -55,6 +61,7 @@ $.fn.simpleLightbox = function( options )
             else
                 if( event.pointerType != 'mouse' )
                     return true;
+
             return false;
         },
         swipeDiff = 0,
@@ -95,6 +102,7 @@ $.fn.simpleLightbox = function( options )
 	        		counter.appendTo(wrapper);
 	        		counter.find('.sl-total').text(objects.length);
 	        	}
+
 	        }
 	        if(options.nav) nav.appendTo(wrapper);
 	        if(options.spinner) spinner.appendTo(wrapper);
@@ -162,11 +170,13 @@ $.fn.simpleLightbox = function( options )
         		}
 				var imageWidth	 = tmpImage.width,
 					imageHeight	 = tmpImage.height;
+
 				if( imageWidth > windowWidth || imageHeight > windowHeight ){
 					var ratio	 = imageWidth / imageHeight > windowWidth / windowHeight ? imageWidth / windowWidth : imageHeight / windowHeight;
 					imageWidth	/= ratio;
 					imageHeight	/= ratio;
 				}
+
 				$('.sl-image').css({
 					'top':    ( $( window ).height() - imageHeight ) / 2 + 'px',
 					'left':   ( $( window ).width() - imageWidth ) / 2 + 'px'
@@ -187,13 +197,16 @@ $.fn.simpleLightbox = function( options )
 				} else {
 					var captionText = cSel.prop(options.captionsData);
 				}
+
 				if(!options.loop) {
 					if(index == 0){ $('.sl-prev').hide();}
 					if(index >= objects.length -1) {$('.sl-next').hide();}
 					if(index > 0){ $('.sl-prev').show(); }
 					if(index < objects.length -1){ $('.sl-next').show(); }
 				}
+
 				if(objects.length == 1) $('.sl-prev, .sl-next').hide();
+
 				if(dir == 1 || dir == -1){
 					var css = { 'opacity': 1.0 };
 					if( options.animationSlide ) {
@@ -205,6 +218,7 @@ $.fn.simpleLightbox = function( options )
 							css.left = parseInt( $('.sl-image').css( 'left' ) ) + 100 * dir + 'px';
 						}
 					}
+
 					$('.sl-image').animate( css, options.animationSpeed, function(){
 						animating = false;
 						setCaption(captionText);
@@ -232,17 +246,20 @@ $.fn.simpleLightbox = function( options )
 		addEvents = function(){
 			// resize/responsive
 			$( window ).on( 'resize.'+prefix, adjustImage );
+
 			// close lightbox on close btn
 			$( document ).on('click.'+prefix+ ' touchstart.'+prefix, '.sl-close', function(e){
 				e.preventDefault();
 				if(opened){ close();}
 			});
+
 			// nav-buttons
 			nav.on('click.'+prefix, 'button', function(e){
 				e.preventDefault();
 				swipeDiff = 0;
 				loadImage( $(this).hasClass('sl-next') ? 1 : -1 );
 			});
+
 			// touchcontrols
 			var swipeStart	 = 0,
 				swipeEnd	 = 0,
@@ -318,6 +335,7 @@ $.fn.simpleLightbox = function( options )
 				}
 				objects.eq(index).trigger($.Event('prevImageLoaded.simplelightbox'));
 			});
+
 		},
 		loadImage = function(dir){
 			objects.eq(index)
@@ -388,9 +406,12 @@ $.fn.simpleLightbox = function( options )
 				$('body').removeClass('hidden-scroll').css({'padding-right':$('body').data('padding')});
 			}
 		}
+
 	// events
 	setup();
+
 	
+
 	// open lightbox
 	objects.on( 'click.'+prefix, function( e ){
 	  	if(isValidLink(this)){
@@ -399,6 +420,7 @@ $.fn.simpleLightbox = function( options )
 	    	openImage($(this));
 	  	}
 	});
+
 	// close on click on doc
 	$( document ).on('click.'+prefix+ ' touchstart.'+prefix, function(e){
 		if(opened){
@@ -407,12 +429,14 @@ $.fn.simpleLightbox = function( options )
 			}
 		}
 	});
+
 	// disable rightclick
 	if(options.disableRightClick){
 		$( document ).on('contextmenu', '.sl-image img', function(e){
 			return false;
 		});
 	}
+
 
 	// keyboard-control
 	if( options.enableKeyboard ){
@@ -431,25 +455,32 @@ $.fn.simpleLightbox = function( options )
 			}
 		});
 	}
+
 	// Public methods
 	this.open = function(elem){
 		elem = elem || $(this[0]);
 		openImage(elem);
 	}
+
 	this.next = function(){
 		loadImage( 1 );
 	}
+
 	this.prev = function(){
 		loadImage( -1 );
 	}
+
 	this.close = function(){
 		close();
 	}
+
 	this.destroy = function(){
 		$( document ).unbind('click.'+prefix).unbind('keyup.'+prefix);
 		close();
 		$('.sl-overlay, .sl-wrapper').remove();
 	}
+
 	return this;
+
 };
 })( jQuery, window, document );

@@ -2,6 +2,7 @@
  * Copyright (c) 2003-2016, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md or http://ckeditor.com/license
  */
+
 // This file contains style definitions that can be used by CKEditor plugins.
 //
 // The most common use for it is the "stylescombo" plugin which shows the Styles drop-down
@@ -13,8 +14,10 @@
 // website requirements and design properly.
 //
 // For more information refer to: http://docs.ckeditor.com/#!/guide/dev_styles-section-style-rules
+
 CKEDITOR.stylesSet.add( 'default', [
 	/* Block styles */
+
 	// These styles are already available in the "Format" drop-down list ("format" plugin),
 	// so they are not needed here by default. You may enable them to avoid
 	// placing the "Format" combo in the toolbar, maintaining the same features.
@@ -29,6 +32,7 @@ CKEDITOR.stylesSet.add( 'default', [
 	{ name: 'Preformatted Text',element: 'pre' },
 	{ name: 'Address',			element: 'address' },
 	*/
+
 	{ name: 'Italic Title',		element: 'h2', styles: { 'font-style': 'italic' } },
 	{ name: 'Subtitle',			element: 'h3', styles: { 'color': '#aaa', 'font-style': 'italic' } },
 	{
@@ -40,7 +44,9 @@ CKEDITOR.stylesSet.add( 'default', [
 			border: '1px solid #ccc'
 		}
 	},
+
 	/* Inline styles */
+
 	// These are core styles available as toolbar buttons. You may opt enabling
 	// some of them in the Styles drop-down list, removing them from the toolbar.
 	// (This requires the "stylescombo" plugin.)
@@ -52,31 +58,41 @@ CKEDITOR.stylesSet.add( 'default', [
 	{ name: 'Subscript',		element: 'sub' },
 	{ name: 'Superscript',		element: 'sup' },
 	*/
+
 	{ name: 'Marker',			element: 'span', attributes: { 'class': 'marker' } },
+
 	{ name: 'Big',				element: 'big' },
 	{ name: 'Small',			element: 'small' },
 	{ name: 'Typewriter',		element: 'tt' },
+
 	{ name: 'Computer Code',	element: 'code' },
 	{ name: 'Keyboard Phrase',	element: 'kbd' },
 	{ name: 'Sample Text',		element: 'samp' },
 	{ name: 'Variable',			element: 'var' },
+
 	{ name: 'Deleted Text',		element: 'del' },
 	{ name: 'Inserted Text',	element: 'ins' },
+
 	{ name: 'Cited Work',		element: 'cite' },
 	{ name: 'Inline Quotation',	element: 'q' },
+
 	{ name: 'Language: RTL',	element: 'span', attributes: { 'dir': 'rtl' } },
 	{ name: 'Language: LTR',	element: 'span', attributes: { 'dir': 'ltr' } },
+
 	/* Object styles */
+
 	{
 		name: 'Styled Image (left)',
 		element: 'img',
 		attributes: { 'class': 'left' }
 	},
+
 	{
 		name: 'Styled Image (right)',
 		element: 'img',
 		attributes: { 'class': 'right' }
 	},
+
 	{
 		name: 'Compact Table',
 		element: 'table',
@@ -90,18 +106,25 @@ CKEDITOR.stylesSet.add( 'default', [
 			'border-collapse': 'collapse'
 		}
 	},
+
 	{ name: 'Borderless Table',		element: 'table',	styles: { 'border-style': 'hidden', 'background-color': '#E6E6FA' } },
 	{ name: 'Square Bulleted List',	element: 'ul',		styles: { 'list-style-type': 'square' } },
+
 	/* Widget styles */
+
 	{ name: 'Clean Image', type: 'widget', widget: 'image', attributes: { 'class': 'image-clean' } },
 	{ name: 'Grayscale Image', type: 'widget', widget: 'image', attributes: { 'class': 'image-grayscale' } },
+
 	{ name: 'Featured Snippet', type: 'widget', widget: 'codeSnippet', attributes: { 'class': 'code-featured' } },
+
 	{ name: 'Featured Formula', type: 'widget', widget: 'mathjax', attributes: { 'class': 'math-featured' } },
+
 	{ name: '240p', type: 'widget', widget: 'embedSemantic', attributes: { 'class': 'embed-240p' } },
 	{ name: '360p', type: 'widget', widget: 'embedSemantic', attributes: { 'class': 'embed-360p' } },
 	{ name: '480p', type: 'widget', widget: 'embedSemantic', attributes: { 'class': 'embed-480p' } },
 	{ name: '720p', type: 'widget', widget: 'embedSemantic', attributes: { 'class': 'embed-720p' } },
 	{ name: '1080p', type: 'widget', widget: 'embedSemantic', attributes: { 'class': 'embed-1080p' } },
+
 	// Adding space after the style name is an intended workaround. For now, there
 	// is no option to create two styles with the same name for different widget types. See #16664.
 	{ name: '240p ', type: 'widget', widget: 'embed', attributes: { 'class': 'embed-240p' } },
@@ -109,4 +132,6 @@ CKEDITOR.stylesSet.add( 'default', [
 	{ name: '480p ', type: 'widget', widget: 'embed', attributes: { 'class': 'embed-480p' } },
 	{ name: '720p ', type: 'widget', widget: 'embed', attributes: { 'class': 'embed-720p' } },
 	{ name: '1080p ', type: 'widget', widget: 'embed', attributes: { 'class': 'embed-1080p' } }
+
 ] );
+

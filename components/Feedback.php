@@ -1,5 +1,6 @@
 <?php
 
+
 class Feedback
 {
     public static function success($message)

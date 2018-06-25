@@ -1,11 +1,14 @@
 <?php
+
 /**
  * Класс Router
  * Компонент для роботи з маршрутами
  */
 class Router
 {
+
     private $routes;
+
     /**
      * Конструктор
      */
@@ -13,6 +16,7 @@ class Router
     {
         // шлях до файлу з маршрутами
         $routesPath = ROOT . '/config/routes.php';
+
         // отримуєм маршрути з файла
         $this->routes = include($routesPath);
         return $this->routes;
@@ -85,3 +89,4 @@ class Router
 }
     
     
+

@@ -34,9 +34,11 @@ null,
                 </ul>
             </div>
             <div class="col-md-9">
-                <div class="cat-text gallery">
-                    <?=($_SESSION['lang'] == 'ua') ? $category_view['text'] : $category_view['text_ru']?><br>
-                </div>
+				<main>
+					<div class="cat-text gallery">
+						<?=($_SESSION['lang'] == 'ua') ? $category_view['text'] : $category_view['text_ru']?><br>
+					</div>
+				</main>
             </div>
         </div>
     </div>

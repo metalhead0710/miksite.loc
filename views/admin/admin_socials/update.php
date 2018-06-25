@@ -34,6 +34,24 @@ adminhead($page);
 			<input class="form-control" id="youtube" name="youtube" placeholder="youtube" type="text" value="<?=$socials['youtube']; ?>">
 		</div>
 	</div>
+    <div class="form-group">
+        <label for="instagram">Instagram</label>
+        <div class="input-group">
+			<span class="input-group-addon">
+				<i class="fa fa-instagram"></i>
+			</span>
+            <input class="form-control" id="instagram" name="instagram" placeholder="Instagram" type="text" value="<?=$socials['instagram']; ?>">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="g_plus">Google + </label>
+        <div class="input-group">
+			<span class="input-group-addon">
+				<i class="fa fa-google-plus"></i>
+			</span>
+            <input class="form-control" id="g_plus" name="g_plus" placeholder="Google+" type="text" value="<?=$socials['g_plus']?>">
+        </div>
+    </div>
 	
 	
 		

@@ -203,6 +203,9 @@ ul.alert-dropdown {
 	min-width: 300px;
 	max-width: 600px;
 }
+td .form-control {
+    min-width: unset;
+}
 .vmist {
 	padding: 0 20px;
 }
@@ -228,20 +231,35 @@ ul.alert-dropdown {
     left: -6px;
     display: block;
 }
-.delete-link-wrapper{
-    display: none;
-    width: 180px;
-    background: rgba(255,255,255,0.5);
-    height: 40px;
-    top: -40px;
-    left: 0;
-    text-align: center;
-    line-height: 40px;
-    position: relative;
+.photo-table img{
+    max-width: 150px;
+    max-height: 80px;
 }
-.delete-link {
-    font-size: 2em;
-    width: 180px;
-    height: 40px;
-    display: block;
+.photo-table .photo-td {
+    width: 150px;
+}
+.photo-table td {
+    vertical-align: middle !important;
+}
+.photo-table .actions {
+    width: 80px;
+    text-align: center;
+}
+.cell-middle {
+    vertical-align: middle !important;
+}
+.check-photos {
+    width: 35px;
+}
+.handle {
+    width: 40px;
+    cursor: pointer;
+}
+.handle i {
+    font-size: 30px;
+}
+.check-photos input{
+    margin-top: 0;
+    top: 0;
+    left: 0;
 }
