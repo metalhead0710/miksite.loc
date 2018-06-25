@@ -8,8 +8,8 @@ class UserController
 		if (isset($_POST['submit'])) {
             
             $login = $_POST['login'];
-            //$password = md5($_POST['password']);
-            $password = $_POST['password'];
+            //$password = $_POST['password'];
+            $password = md5($_POST['password']);
             $errors = false;
             $userId = User::checkUserData($login, $password);
 			if ($userId == false) {
