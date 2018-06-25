@@ -143,7 +143,7 @@ class HomeController
         {
             $contact = Contacts::getEmail();
             $adminEmail = $contact['email'];
-            $message = "Від {$username}. Email: {$email}. Текст: {$content}.";
+            $message = "Від {$username}. Email: {$email}. Телефон: {$phone}. Текст: {$content}.";
             $subject = 'Із сайту';
             $result = mail($adminEmail, $subject, $message);
 
