@@ -1,5 +1,10 @@
 <?php
 $contacts = Contacts::getContactsList();
+$opened = (trim($_SERVER['REQUEST_URI'], '/') === trim(Url::langPart(), '/')) ? true : false;
+
+//var_dump(rtrim(Url::langPart(), '/'));
+//var_dump(rtrim($_SERVER['REQUEST_URI'], '/'));
+//var_dump($opened);
 ?>
 <!DOCTYPE html>
 <html lang="<?= ($_SESSION['lang'] === 'ua') ? 'uk' : 'ru' ?>">
@@ -18,6 +23,16 @@ $contacts = Contacts::getContactsList();
         gtag('js', new Date());
 
         gtag('config', 'UA-118580709-1');
+        gtag('config', 'AW-850912720');
+  </script>
+  <script> 
+    gtag(
+      'config', 
+      'AW-850912720/sJTNCJPc64kBENDL35UD', 
+      { 
+        'phone_conversion_number': '+380506957172' 
+      }
+    ); 
   </script>
 
   <meta name="description" content="<?= $meta_description ?>"/>
@@ -95,14 +110,14 @@ $contacts = Contacts::getContactsList();
     <div class="navbar">
       <div class="container">
         <div class="navbar-header">
-          <button class="navbar-toggle bordered" data-toggle="collapse" data-target="#mainMenu">
-            <i class="fa fa-bars mobbutton"></i>
+          <button class="navbar-toggle bordered <?= $opened ? '' : 'collapsed' ?>" data-toggle="collapse" data-target="#mainMenu">
+            <i class="fa <?= $opened ? 'fa-times' : 'fa-bars' ?> mobbutton"></i>
           </button>
           <a href="<?= Url::langPart() ?>/" class="navbar-brand">
             <img src="/template/images/logo_mik.png"/>
           </a>
         </div>
-        <div class="collapse navbar-collapse" id="mainMenu">
+        <div class="collapse navbar-collapse <?= $opened ? 'in' : '' ?>" id="mainMenu">
           <ul class="nav navbar-nav">
             <li>
               <a href="<?= Url::langPart() ?>/" class=""><?= Dict::_('SMAIN') ?></a>
