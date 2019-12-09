@@ -1,197 +1,140 @@
 @charset "utf-8";
 
 body {
-	font-family: "open sans", Arial, Helvetica, sans-serif;
-	background:#FFF;
+    font-family: "open sans", Arial, Helvetica, sans-serif;
+    background: #FFF;
 }
+
+.hits-content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
 /*==========PLANS AND PRICING==============*/
-/* Animation */
-.PlanPricing {
-	/*margin-top:100px;*/
-	-moz-transition:all 0.3s ease;
-	-webkit-transition:all 0.3s ease;
-	-ms-transition: all 0.3s ease;
-	-o-transition:all 0.3s ease;
-	transition:all 0.3s ease;
-}
-.PlanPricing:hover {
-	-moz-transform:scale(1.1);
-	-webkit-transform:scale(1.1);
-	-o-transform:scale(1.1);
-	-ms-transform:scale(1.1);
-	transform:scale(1.1);
-	z-index:2;
-	-moz-box-shadow:0px 0px 5px rgba(0, 0, 0, 0.3);
-	-webkit-box-shadow:0px 0px 5px rgba(0, 0, 0, 0.3);
-	box-shadow:0px 0px 5px rgba(0, 0, 0, 0.3);
-}
 .PlanPricing .planName {
-	padding-top:50px;
-	padding-bottom:10px;
-	text-align:center;
-	height: 120px;
+    height: 150px;
 }
-.PlanPricing .price {
-	background:#2cc76a;
-	padding:5px;
-	color:#FFF;
-	font-size:50px;
-	-webkit-border-radius:100%;
-	-moz-border-radius:100%;
-	border-radius:100%;
-	display:block;
-	width:100px;
-	height:100px;
-	line-height:100px;
-	margin:0 auto;
-	position:relative;
-	margin-top:-107px;
-	margin-bottom:10px;
-}
-.PlanPricing.Recommended .price {
-	background:#f45c57;
-}
+
 .PlanPricing .planName h3 {
-	color:#FFF;
-	text-align:center;
-	padding:0;
-	margin:0;
-	text-transform:uppercase;
+    color: #333;
+    text-align: center;
+    padding: 0;
+    margin: 15px 0 5px 0;
+    text-transform: uppercase;
 }
+
 .PlanPricing .planName p {
-	color:#999;
-	text-align:center;
+    color: #999;
+    text-align: center;
 }
+
 .PlanPricing .planFeatures {
-	text-align:center;
-	padding:10px;
+    text-align: center;
+    padding: 10px;
 }
+
 .PlanPricing .planFeatures ul {
-	margin:0;
-	padding:0;
-	list-style:none;
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
+
 .PlanPricing .planFeatures ul li {
-	padding:13px 0;
-	list-style:none;
+    padding: 13px 0;
+    list-style: none;
 }
+
 .PlanPricing p {
-	margin:0;
+    margin-top: auto;
 }
+
 .PlanPricing .btn {
-	width:100%;
-	-webkit-border-radius:0;
-	-moz-border-radius:0;
-	border-radius:0;
-	margin:0;
-	-webkit-box-sizing:border-box;
-	-moz-box-sizing:border-box;
-	box-sizing:border-box;
+    width: 100%;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    margin: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+	border: none;
 }
 
 /*========= Price CSS==============*/
 
-.template4{
-	overflow:hidden;
-	font-size:13px;
-	font-weight:300;
-	position:relative;
-	border-top:5px solid #1B253B;
-	transition: all 1s linear 0s;
-	background:#fff;
-	margin-bottom: 60px;
-}
-.template4:hover{
-	border-top:0px solid #1B253B;
-	transition: all 1s linear 0s;
-}
-.template4:hover > p a{
-	width:100% !important;
-	
-}
-.template4:hover > div span.price{
-	top:50px !important;
-	transition: all 1s linear 0s;
-}
-.PlanPricing.template4 .planName h3 {
-    color: #333;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-    text-transform: uppercase;
+.template4 {
+    overflow: hidden;
+    font-size: 13px;
+    font-weight: 300;
+    position: relative;
+    transition: all 1s linear 0s;
+    background: #fff;
+    margin-bottom: 60px;
+    display: flex;
+    flex-direction: column;
+    flex-flow: column nowrap;
 }
 
-.PlanPricing.template4 .price {
-     background: none repeat scroll 0 0 #2CC76A;
-    border-radius: 0;
-    color: #FFFFFF;
-    display: block;
-    font-size: 50px;
-    height: 50px;
-    line-height: 30px;
-    margin: -50px auto 10px;
-    padding: 5px;
-    position: relative;
-    width: 100%;
+.template4:hover > p a {
+    width: 100% !important;
+
 }
+
 .PlanPricing.template4 .btn {
     border-radius: 0;
     box-sizing: border-box;
     margin: 0 auto;
     width: 60%;
-	color:#fff;
-	font-size:15px;
-	padding:20px 30px;
-	background: #4B515D; /* Old browsers */
-	 -webkit-transition: all 0.3s ease-in-out;
--moz-transition: all 0.3s ease-in-out;
--o-transition: all 0.3s ease-in-out;
-transition: all 0.3s ease-in-out;
-}
-.PlanPricing.template4 .btn:hover {
-   background: #4B515D !important; /* Old browsers */
-	 -webkit-transition: all 0.3s ease-in-out;
--moz-transition: all 0.3s ease-in-out;
--o-transition: all 0.3s ease-in-out;
-transition: all 0.3s ease-in-out;
+    color: #fff;
+    font-size: 15px;
+    padding: 20px 30px;
+    background: #4B515D; /* Old browsers */
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 
-.span3.PlanPricing.template4 > p {
-    text-align: center;
+.PlanPricing.template4 .btn:hover {
+    background: #4B515D !important; /* Old browsers */
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 
 .PlanPricing.template4 .price {
-    background: none repeat scroll 0 0 #1B253B;
-    border-radius: 0;
+    background-color: #1B253B;
     color: #FFFFFF;
     display: block;
-    font-size: 40px;
+    font-size: 28px;
     height: 40px;
-    line-height: 30px;
-    padding: 5px;
-    position: absolute;
-	left:0;
-	top:-150px;
+    text-align: center;
     width: 100%;
-    transition: all 1s linear 0s;
 }
-.orange{
-	color:#fba826;	
+
+.orange {
+color: #fba826;
 }
+
 .template4 .planFeatures {
-    color: #333333;
+color: #333333;
 }
+
 .planFeatures img {
-	max-height: 150px;
+max-height: 150px;
 }
+
 .specs {
-	text-align: justify;
-	padding-left: 5px !important;
-	height: 200px;
-	overflow: hidden;
-    text-overflow: ellipsis;
-	transition: all 0.5s linear 0s;	
+text-align: left;
+padding-left: 5px !important;
+overflow: hidden;
+text-overflow: ellipsis;
+transition: all 0.5s linear 0s;
+font-size: 16px;
 }
+
 .specs > ul > li {
-	padding: 0 !important;
+padding: 0 !important;
 }

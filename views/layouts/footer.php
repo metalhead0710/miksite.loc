@@ -89,7 +89,6 @@ $categories = Category::getCategoriesList();
 </div>
 <div class="feedback">
   <a class="handle" href="#">
-    <i class="fa fa-phone"></i>
     <i class="fa fa-envelope-o"></i>
   </a>
   <div class="content">
@@ -119,6 +118,14 @@ $categories = Category::getCategoriesList();
     </form>
   </div>
 </div>
+<?php if ($contacts['tel1'] != '') :?>
+  <div class="call-us">
+    <div class="phone-button">
+      <a href="tel:<?=$contacts['tel1']?>"><i class="fa fa-phone" aria-hidden="true"></i></a>
+    </div>
+  </div>
+<?php endif;?>
+
 <div class="flash-message"></div>
 <div class="footer">
     <?php echo date("Y");?> &copy; <span style="color: #E3E3E3">MiK.</span> <?=Dict::_('SDISCLAIMER')?>

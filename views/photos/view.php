@@ -61,7 +61,7 @@ head(
                     Назад
                 </span>
             </a>
-            <a href="#" class="main-btn button-more" >
+            <a href="#" class="main-btn button-more" id="load-anchor">
                 <span class="text-btn">
                     <?=Dict::_('SLOADMORE')?>
                 </span>
@@ -81,40 +81,41 @@ scripts();
             $('.photo-link').simpleLightbox();
         });
 
-        $(document).ready(function(){
-            $("#imgLoad").hide();  //Никаєм значок завантаження
+        $(document).ready(function() {
+          $('#imgLoad').hide();  //Никаєм значок завантаження
         });
         var num = 8; //з якоого рядка ми таскаєм дані
         var count = <?=$count?> - 8;
         checkData(count);
-        function checkData(count) {
-            if (count <= 0 ){
-                $('.button-more').hide();
-            }
-        }
-        $(function() {
-            $(".button-more").click(function(e){
-                $("#imgLoad").show(); //показуєм значок завантаження
-                $.ajax({
-                    url: "/photos/showmore/<?=intval($category['id'])?>/"+num,
-                    type: "post",
-                    success: function(data){
-                        if(data == 0){
-                            $(".button-more").hide();
-                            console.log("Більш нема фоток");
-                            }else{
-                            $(".gallery").append(data);
-                            num = num + 10;
-                            count = count - 10;
-                            checkData(count);
-                            $("#imgLoad").hide();
-							$('.photo-link').simpleLightbox();
 
-                        }
-                    }
-                });
-			e.preventDefault();
+        function checkData(count) {
+          if (count <= 0) {
+            $('.button-more').remove();
+          }
+        }
+
+        $(function() {
+          $('.button-more').click(function(e) {
+            $('#imgLoad').show(); //показуєм значок завантаження
+            $.ajax({
+              url: "/photos/showmore/<?=intval($category['id'])?>/" + num,
+              type: 'post',
+              success: function(data) {
+                if (data == 0) {
+                  $('.button-more').hide();
+                  console.log('Більш нема фоток');
+                } else {
+                  $('.gallery').append(data);
+                  num = num + 10;
+                  count = count - 10;
+                  checkData(count);
+                  $('#imgLoad').hide();
+                  $('.photo-link').simpleLightbox();
+                }
+              }
             });
+            e.preventDefault();
+          });
         });
 
     </script>

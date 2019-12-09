@@ -26,6 +26,31 @@ head(Dict::_('SMAIN'), null, $banner);
 </div>
 <div class="main-content-block">
   <div class="container">
+    <div class="home-photos-wrapper">
+      <div class="pg-header mg-bt-50">
+        <h1 class="text-center">
+            <?=Dict::_('HOME_PHOTO')?>
+        </h1>
+      </div>
+      <div class="homepage-photos">
+          <?php foreach ($photoCats as $photoCat) : ?>
+            <div class="col-md-2 col-sm-3 col-xs-6 photo-catalog">
+              <a href="<?= Url::langPart() ?>/photos/<?= ($_SESSION['lang'] == 'ua') ? $photoCat['url'] : $photoCat['url_ru'] ?>"
+                 class="">
+                  <?php if ($photoCat['pic'] != '') : ?>
+                    <img src="/upload/photos/<?= $photoCat['folder'] ?>/thumbs/<?= $photoCat['pic'] ?>" alt="..." class="">
+                  <?php else : ?>
+                    <img src="http://www.placehold.it/350x250?text=:(" alt="..." class="">
+                  <?php endif; ?>
+
+                <p class="name"><?= ($_SESSION['lang'] == 'ua') ? $photoCat['name'] : $photoCat['name_ru'] ?></p>
+              </a>
+            </div>
+          <?php endforeach; ?>
+      </div>
+
+    </div>
+
     <div class="main-block">
       <div class="row">
         <div class="col-md-3 left-sidebar">

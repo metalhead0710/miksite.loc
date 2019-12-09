@@ -11,6 +11,7 @@ class HomeController
         $news = News::getThreeLast();
         $contacts = Contacts::getContactsList();
         $maintext = Maintext::getText();
+        $photoCats = Photos::getPhotoCats();
 
         require_once(ROOT . '/views/home/index.php');
 

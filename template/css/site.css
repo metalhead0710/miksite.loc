@@ -33,7 +33,7 @@ body {
     margin-top: 22px;
 }
 .main-banner-overlay {
-    min-height: 500px;
+    min-height: 280px;
 }
 .center-block {
     max-height: 187px;
@@ -116,15 +116,13 @@ body {
 }*/
 .phones {
     color: #fff;
-    font-size: 40px;
-    margin: 120px 0;
+    font-size: 26px;
+    margin: 50px 0;
 }
 .phones a {
-    color: #fff;
-    text-decoration: none;
+    color: #ffea3f;
 }
 .phones a:hover {
-    color: #fff;
     text-decoration: none;
 }
 main p {
@@ -547,10 +545,10 @@ main p {
     cursor: pointer;
     border-top-left-radius: 50%;
     border-bottom-left-radius: 50%;
-    left: -123px;
+    left: -63px;
     display: inline-block;
     background: #D2D5D9;
-    line-height: 100px;
+    line-height: 50px;
 }
 .feedback .handle:hover,
 .feedback .handle:active,
@@ -559,7 +557,7 @@ main p {
 }
 .feedback .handle i {
     color: #E6003A;
-    padding: 40px 5px 10px 19px;
+    padding: 10px 5px 10px 19px;
     font-size: 4rem;
 }
 
@@ -568,6 +566,37 @@ main p {
 }
 input.has-error, textarea.has-error {
     outline: 1px solid #BE2525;
+}
+
+.call-us {
+    display: none;
+}
+.home-photos-wrapper {
+    border: 1px solid #D2D5D9;
+}
+.homepage-photos {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.photo-catalog {
+    text-align: center;
+}
+
+.homepage-photos a {
+    display: inline-block;
+    text-decoration: none;
+    color: #4B515D;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+}
+.homepage-photos a:hover {
+    text-decoration: none;
+}
+.homepage-photos img {
+    width: 100%;
 }
 
 @media (max-width: 1200px) {
@@ -623,6 +652,30 @@ input.has-error, textarea.has-error {
         padding: 15px;
     }
 
+    .call-us {
+        display: block;
+        width: 60px;
+        height: 60px;
+        border-radius: 60px;
+        position: fixed;
+        bottom: 5px;
+        right: 25px;
+        z-index: 4;
+        background-color: #D2D5D9;
+        border: 1px solid #333;
+    }
+    .phone-button {
+        height: 100%;
+        width: 100%;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+    }
+
+    .phone-button a {
+        font-size: 2.5rem;
+        color: #E6003A;
+    }
 }
 @media (max-width: 480px) {
     .photo-item {
@@ -657,7 +710,7 @@ input.has-error, textarea.has-error {
     }
     .feedback .handle {
         position: absolute;
-        top: -67px;
+        top: -53px;
         cursor: pointer;
         border-top-left-radius: 50%;
         border-bottom-left-radius: unset;
@@ -668,9 +721,13 @@ input.has-error, textarea.has-error {
         border: 1px solid #333;
         border-bottom: none;
         border-top-right-radius: 50%;
+        width: 50px;
+        height: 52px;
+        padding-top: 7px;
+        text-align: center;
     }
     .feedback .handle i {
-        padding: 25px 5px 0px 5px;
+        padding: unset;
         font-size: 2.5rem;
     }
 }
